@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>接口帮助</title>
+</head>
+<body>
+<h1>使用帮助</h1>
+<h2>API地址</h2>
+<p>http://192.168.11.213:8000/cmdb/</p>
+<p>所有请求方法均为GET</p>
+<h2>获取JSON格式数据</h2>
+<p>示例URL:&nbsp;http://192.168.11.213:8000/cmdb/w/mobile/json</p>
+<p>示例URL解析:<p>
+<p>以上URL请求路径共分为三部分。第一部分表示服务类型，第二部分表示系统名称，第三部分表示数据格式</p>
+<h4 style="color:red">第一部分只能是以下几个字符串中选择。必须小写</h4>
+<p>w  -- 表示是Web Servcice。即表示该站点是用于提供对外公共访问的。如www.examples.com.它就是一个Web Service</p>
+<p>a  -- 表示是API服务。即表示该站点不对外提供服务，它只是给我们的系统调用.</p>
+<p>p  -- 表示是一个Windows进程或者服务</p>
+<h4>第二部分是系统名称，这个后续要规范化。它匹配3-10个英文字符，不区分大小写</h4>
+<p>示例这里是获取系统名称为mobile</p>
+<h4>第三部分是数据格式，只允许json。如果未指定格式，将返回404</h4>
+<h2>获取Ansible Playbook的YAML格式</h2>
+<p>示例URL:&nbsp;http://192.168.11.213:8000/cmdb/w/mobile/?search</p>
+<h4>第一部分与第二部分同JSON格式意义相同，请参考上面</h4>
+<h4>第三部分</h4>
+<p>第三部分是查询字符串，必须用"?"开头，后面跟的是系统中的服务名称。对应ansible-playbook中的app。<br>
+如果未找到指定服务，将返回404。<br>可以通过重定向将返回的字符串写入文件。
+如 curl http://192.168.11.213:8000/cmdb/w/mobile/?search > update.yaml。表示mobile系统的search服务。
+</p>
+</body>
+</html>

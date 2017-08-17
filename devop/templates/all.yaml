@@ -1,0 +1,4 @@
+---
+{% for api in apis %}
+  {{ api.system_server_name }}: '{{ api.use_domain }}'
+{% endfor %}

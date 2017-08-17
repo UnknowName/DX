@@ -1,0 +1,23 @@
+---
+- hosts: {{ host }}
+  gather_facts: false
+  vars:
+    {% if site %}
+    site:
+      - "{{ site }}"
+    {% endif %}
+    {% if app %}
+    app:
+      - "{{ app }}"
+    {% endif %}
+    {% if nginxs %}
+    nginx:
+      {% for nginx in nginxs %}
+      - "{{ nginx }}"
+      {% endfor %}
+    {% endif %}
+  vars_files:
+    - svc.yaml
+
+  roles:
+    - { role: iis_update, tags: iis }
