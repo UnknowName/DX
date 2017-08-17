@@ -41,9 +41,10 @@ def query(request, sys_name, data_format=None, sys_type=None):
             sys_info['url'] = info.use_domain
             sys_info['website'] = info.system_server_name
             sys_info['nginx'] = create_fqdn(info.system_ngx_server)
+        else:
+            sys_info['path'] = info.use_domain
+            sys_info['process_name'] = info.system_server_name
         sys_info['iis'] = create_fqdn(info.system_iis_server)
-        sys_info['process_name'] = info.system_server_name
-        sys_info['path'] = info.use_domain
         server_info['infos'].append(sys_info)
     if data_format == 'json' or not data_format:
         return HttpResponse(json.dumps(server_info))
