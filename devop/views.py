@@ -2,14 +2,14 @@
 # coding:utf8
 
 
+from django.shortcuts import HttpResponse, render
+from django.shortcuts import render
+
 import json
 import re
-from devop.funcs import create_fqdn
-from devop.funcs import fmt_host
-from devop.funcs import get_site_app
-from django.shortcuts import HttpResponse
-from django.shortcuts import render
 from devop.models import DXSystemInfo
+from devop.funcs import create_fqdn, fmt_host, get_site_app
+from devop.ldap_auth import LDAPAuth
 
 
 def index(request):

@@ -22,6 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '_-=#5(7)@h+-br!^pt1bnzv7vu)pl35y=0#ce@9t9kqo@i-)#^'
 
+#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -106,3 +107,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Add for LDAP Auth start
+LDAP_URI = 'ldap://192.168.11.4:389'
+LDAP_BASE_DN = 'CN=Users,DC=example,DC=com'
+LDAP_BIND = 'CN=username,CN=Users,DC=example,DC=com'
+LDAP_BIND_PASSWD = 'password'
+LDAP_SEARCH = 'CN=Users,DC=example,DC=com'
+LDAP_FILTER = 'sAMAccountName=%s'
+LDAP_DISPLAY_ATTR = ['sAMAccountName', 'displayName']
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'devop.ldap_auth.LDAPAuth',
+#    'django.contrib.auth.backends.ModelBackend',
+)
+# Add for LDAP Auth end
