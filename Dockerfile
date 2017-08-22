@@ -1,5 +1,7 @@
 FROM django:1.8-python2
-RUN pip install django_admin_bootstrapped gunicorn
+RUN apt-get update
+RUN apt-get install libldap2-dev libsasl2-dev -y
+RUN pip install django_admin_bootstrapped gunicorn python-ldap
 ADD ./  /usr/src/app
 WORKDIR /usr/src/app
 VOLUME ["/usr/src/app/uploads","/usr/src/app/static"]
