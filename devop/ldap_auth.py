@@ -30,9 +30,10 @@ class LDAPAuth(object):
             return None
         _, attr_dic = result[0]
         ldap_user = attr_dic['sAMAccountName'][0]
+        ldap_dn = attr_dic['distinguishedName'][0]
 #       The user in LDAP,Authenticat the LDAP password          
         try:
-            self.ldap.bind_s(username, password)
+            self.ldap.bind_s(ldap_dn, password)
             print 'Use The LDAP User %s Login System' % (username,)
         except ldap.INVALID_CREDENTIALS:
             print 'The LDAP User Or Password Wrong!'

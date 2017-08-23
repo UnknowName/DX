@@ -115,7 +115,7 @@ LDAP_BIND = 'CN=username,CN=Users,DC=example,DC=com'
 LDAP_BIND_PASSWD = 'password'
 LDAP_SEARCH = 'CN=Users,DC=example,DC=com'
 LDAP_FILTER = 'sAMAccountName=%s'
-LDAP_DISPLAY_ATTR = ['sAMAccountName', 'displayName']
+LDAP_DISPLAY_ATTR = ['sAMAccountName', 'distinguishedName']
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
