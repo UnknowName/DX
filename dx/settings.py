@@ -110,10 +110,9 @@ STATIC_URL = '/static/'
 
 # Add for LDAP Auth start
 LDAP_URI = 'ldap://192.168.11.4:389'
-LDAP_BASE_DN = 'CN=Users,DC=example,DC=com'
 LDAP_BIND = 'CN=username,CN=Users,DC=example,DC=com'
 LDAP_BIND_PASSWD = 'password'
-LDAP_SEARCH = 'CN=Users,DC=example,DC=com'
+LDAP_SEARCH = 'CN=Users,DC=exmaple,DC=com'
 LDAP_FILTER = 'sAMAccountName=%s'
 LDAP_DISPLAY_ATTR = ['sAMAccountName', 'distinguishedName']
 
@@ -123,3 +122,27 @@ AUTHENTICATION_BACKENDS = (
 #    'django.contrib.auth.backends.ModelBackend',
 )
 # Add for LDAP Auth end
+
+# Add for loggin
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s  %(module)s  %(message)s',
+         },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'formatter': 'verbose',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+         },
+    },
+}
