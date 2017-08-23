@@ -9,7 +9,7 @@ import ldap
 import logging
 
 logger = logging.getLogger('django')
-logger.info('Start LDAP AUTH')
+logger.info('Use LDAPAuth backend')
 
 class LDAPAuth(object):
     def __init__(self):
@@ -17,9 +17,11 @@ class LDAPAuth(object):
             self.ldap = ldap.initialize(settings.LDAP_URI)
             self.ldap.bind_s(settings.LDAP_BIND, settings.LDAP_BIND_PASSWD) 
         except Exception as e:
+            logger.error('LDAP bind failed Because %s' % (e,))
             self.e = e
 
     def authenticate(self, username=None, password=None, **kwargs):
+        logger.info('Start the LDAP Auth')
         if hasattr(self, 'e'):
             raise "Wrong,Because %s" % (self.e,)
         filter_user = settings.LDAP_FILTER  % (username,)
@@ -28,6 +30,7 @@ class LDAPAuth(object):
             filter_user, settings.LDAP_DISPLAY_ATTR
         )
 #       The user not in LDAP,Return None
+        logger.info('The user %s not in LDAP' % (username, ))
         if not result:
             return None
         _, attr_dic = result[0]
@@ -36,9 +39,8 @@ class LDAPAuth(object):
 #       The user in LDAP,Authenticat the LDAP password          
         try:
             self.ldap.bind_s(ldap_dn, password)
-#            print 'Use The LDAP User %s Login System' % (username,)
+            logger.info('The user %s use LDAPAuth sucess' % (username,))
         except ldap.INVALID_CREDENTIALS:
-            print 'print info'
             logger.error('The LDAP User Or Password Wrong!')
             return None
         else:
@@ -52,7 +54,6 @@ class LDAPAuth(object):
                 )
                 user.set_password(password)
                 user.save()
-            print 'Return the user object %s' % (user,)
             return user
 
     def has_perm(self, perm, obj=None):
