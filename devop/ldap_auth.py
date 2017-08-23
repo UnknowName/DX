@@ -6,8 +6,10 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 import ldap
+import logging
 
-
+logger = logging.getLogger('django')
+logger.info('Start LDAP AUTH')
 
 class LDAPAuth(object):
     def __init__(self):
@@ -34,15 +36,16 @@ class LDAPAuth(object):
 #       The user in LDAP,Authenticat the LDAP password          
         try:
             self.ldap.bind_s(ldap_dn, password)
-            print 'Use The LDAP User %s Login System' % (username,)
+#            print 'Use The LDAP User %s Login System' % (username,)
         except ldap.INVALID_CREDENTIALS:
-            print 'The LDAP User Or Password Wrong!'
+            print 'print info'
+            logger.error('The LDAP User Or Password Wrong!')
             return None
         else:
             try:
                 user = User.objects.get(username=username)
             except User.DoesNotExist:
-                print 'The LDAP User %s not in Django DB,Now Add' % (ldap_user,)
+                logger.info('The LDAP User %s not in Django DB,Now Add' % (ldap_user,))
                 user = User(
                     username=ldap_user, is_staff=True, 
                     is_superuser=True, is_active=True
