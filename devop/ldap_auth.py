@@ -30,8 +30,8 @@ class LDAPAuth(object):
             filter_user, settings.LDAP_DISPLAY_ATTR
         )
 #       The user not in LDAP,Return None
-        logger.info('The user %s not in LDAP' % (username, ))
         if not result:
+            logger.info('The user %s not in LDAP' % (username, ))
             return None
         _, attr_dic = result[0]
         ldap_user = attr_dic['sAMAccountName'][0]
