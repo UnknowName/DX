@@ -110,9 +110,9 @@ STATIC_URL = '/static/'
 
 # Add for LDAP Auth start
 LDAP_URI = 'ldap://192.168.11.4:389'
-LDAP_BIND = 'CN=chengjn,CN=Users,DC=corp,DC=comepro,DC=com'
-LDAP_BIND_PASSWD = '!234qweR'
-LDAP_SEARCH = 'CN=Users,DC=corp,DC=comepro,DC=com'
+LDAP_BIND = 'CN=username,CN=Users,DC=example,DC=com'
+LDAP_BIND_PASSWD = 'password'
+LDAP_SEARCH = 'CN=Users,DC=example,DC=com'
 LDAP_FILTER = 'sAMAccountName=%s'
 LDAP_DISPLAY_ATTR = ['sAMAccountName', 'distinguishedName']
 
