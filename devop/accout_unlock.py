@@ -16,11 +16,12 @@ def index(request):
         if form.is_valid():
             account = form.cleaned_data.get('account', None)
             ldap = LDAP()
-            user = ldap.get_dn(account)
-            if user:
+            dn = ldap.get_dn(account)
+            ldap.unlock(dn)
+            if ldap.is_right():
                 return HttpResponse(u'已成功解琐帐号%s<a href="/ldap/">返回</a>' %(account,))
             else:
-                return HttpResponse(u'没有找到用户%s,请确认输入正确' %(account,))
+                return HttpResponse(u'解琐失败，请确认用户名正确或者联系管理员' %(account,))
     else:
         form = AccountForm()
     return render(request, 'unlock.html', locals())
