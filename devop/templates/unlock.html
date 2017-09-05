@@ -1,0 +1,19 @@
+<html>
+  <head>
+      <title>域帐号解琐</title>
+      <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+      <style>
+        div { margin:10px 20px;}
+      </style>
+  </head>
+  <body>
+    <div>
+      <form action='/ldap/' method='post'>
+        {% csrf_token %}
+        {{ form }}
+        <input type="Submit" value="解琐">
+      </form>
+      <p>域帐号请不要使用前前缀DX。如域帐号为dx\username，请输入username即可。</p>
+    </div>
+  </body>
+</html>
