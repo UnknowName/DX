@@ -56,8 +56,6 @@ class LDAPAuth(object):
                 user.save()
             return user
 
-    def has_perm(self, perm, obj=None):
-        return True
 
     def is_authenticated(self):
         return True
