@@ -20,11 +20,14 @@ class LDAP(object):
             logger.error(e)
 
     def get_dn(self, account):
-        filter_user = settings.LDAP_FILTER  % (account,)
-        result = self.ldap.search_s(
-            settings.LDAP_SEARCH, ldap.SCOPE_SUBTREE,
-            filter_user, settings.LDAP_DISPLAY_ATTR
-        )
+        filter_user = settings.LDAP_FILTER  % (str(account),)
+        try:
+            result = self.ldap.search_s(
+                settings.LDAP_SEARCH, ldap.SCOPE_SUBTREE,
+                filter_user, settings.LDAP_DISPLAY_ATTR
+            )
+        except ldap.FILTER_ERROR:
+            return None
         if not result:
             return None
         _, attr_dic = result[0]
