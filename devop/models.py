@@ -47,6 +47,7 @@ class DXSystemInfo(models.Model):
         ('API', 'HTTP/HTTPS API'),
         ('WIN', 'Windows Process'),
         ('PUB', 'Website Service'),
+        ('CROn', 'Windows Crontab'),
     )
     system_name = models.CharField(max_length=50, verbose_name=u'系统名称')
     system_type = models.CharField(
