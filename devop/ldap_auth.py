@@ -23,7 +23,7 @@ class LDAPAuth(object):
     def authenticate(self, username=None, password=None, **kwargs):
         logger.info('Start the LDAP Auth')
         if hasattr(self, 'e'):
-            raise "Wrong,Because %s" % (self.e,)
+            raise ldap.INVALID_CREDENTIALS
         filter_user = settings.LDAP_FILTER  % (username,)
         result = self.ldap.search_s(
             settings.LDAP_SEARCH, ldap.SCOPE_SUBTREE,
