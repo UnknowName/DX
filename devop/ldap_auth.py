@@ -3,7 +3,7 @@
 
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 import ldap
 import logging
@@ -49,11 +49,12 @@ class LDAPAuth(object):
             except User.DoesNotExist:
                 logger.info('The LDAP User %s not in Django DB,Now Add' % (ldap_user,))
                 user = User(
-                    username=ldap_user, is_staff=True, 
-                    is_superuser=True, is_active=True
+                    username=ldap_user, is_staff=True, is_active=True
                 )
+                dev = Group.objects.get(name='dev')
                 user.set_password(password)
                 user.save()
+                user.groups = [dev]
             return user
 
 
