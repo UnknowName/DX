@@ -55,7 +55,8 @@ class LDAPAuth(object):
                 user.set_password(password)
                 user.save()
                 user.groups = [dev]
-            return user
+            finally:
+                return user
 
 
     def is_authenticated(self):
