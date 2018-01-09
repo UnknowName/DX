@@ -87,6 +87,6 @@ def generate_yaml(request, sys_name, sys_type):
     return render(request, 'hosts.yaml', locals())
 
 
-def  get_all(request):
+def get_all(request):
     apis = DXSystemInfo.objects.filter(system_type='API')
     return render(request, 'all.yaml', locals())
