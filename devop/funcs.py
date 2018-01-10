@@ -9,10 +9,6 @@ from tld import get_tld
 
 from django.conf import settings
 
-settings.configure()
-
-print dir(settings)
-
 
 def create_fqdn(name):
     names = re.split(r'[/,,,\s]', name.lower())
@@ -52,4 +48,3 @@ if __name__ == "__main__":
     print create_fqdn('gw8,gw9')
     print create_fqdn('gw8')
     print create_fqdn('')
-    get_zones()
