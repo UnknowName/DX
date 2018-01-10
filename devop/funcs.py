@@ -47,8 +47,6 @@ def fmt_host(host):
     else:
         return host
 
-def get_zones():
-    pass
 
 if __name__ == "__main__":
     print create_fqdn('gw8,gw9')
