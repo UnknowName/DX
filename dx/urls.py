@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^cmdb/', include('devop.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ldap/$', 'devop.accout_unlock.index'),
+    url(r'^clean/cache$', 'devop.cache_clean.index'),
 ]

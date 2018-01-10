@@ -146,3 +146,13 @@ LOGGING = {
          },
     },
 }
+
+#Add for cloudflare Clean Cache
+CLOUDFLARE_API = 'https://api.cloudflare.com/client/v4/zones'
+
+
+CLOUDFLARE_HEADER = {
+    'X-Auth-Email': 'username@domain.com',
+    'X-Auth-Key': 'username key',
+    'Content-Type': 'application/json'
+}

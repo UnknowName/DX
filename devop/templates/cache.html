@@ -1,0 +1,19 @@
+<html>
+  <head>
+      <title>缓存清理</title>
+      <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+      <style>
+        div { margin:10px 20px;}
+      </style>
+  </head>
+  <body>
+    <div>
+      <form enctype="multipart/form-data" method="post" action="/clean/cache">
+        {% csrf_token %}
+        {{ form }}
+        <input type="Submit" value="清理">
+      </form>
+      <p>需要清理的缓存URL请一行一个，不能有中文。文本格式</p>
+    </div>
+  </body>
+</html>

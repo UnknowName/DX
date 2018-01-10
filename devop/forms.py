@@ -9,5 +9,4 @@ class AccountForm(forms.Form):
 
 
 class FileForm(forms.Form):
-    title = forms.CharField(max_length=80)
     filename = forms.FileField()

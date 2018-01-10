@@ -3,6 +3,15 @@
 
 
 import re
+import json
+import requests
+from tld import get_tld
+
+from django.conf import settings
+
+settings.configure()
+
+print dir(settings)
 
 
 def create_fqdn(name):
@@ -38,7 +47,11 @@ def fmt_host(host):
     else:
         return host
 
+def get_zones():
+    pass
+
 if __name__ == "__main__":
     print create_fqdn('gw8,gw9')
     print create_fqdn('gw8')
     print create_fqdn('')
+    get_zones()
