@@ -1,7 +1,9 @@
 <html>
   <head>
       <title>缓存清理</title>
+      <!--
       <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+      -->
       <style>
         div { margin:10px 20px;}
       </style>
@@ -10,10 +12,10 @@
     <div>
       <form enctype="multipart/form-data" method="post" action="/clean/cache">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="Submit" value="清理">
       </form>
-      <p>需要清理的缓存URL请一行一个，不能有中文。文本格式</p>
+      <p>需要清理的缓存URL请一行一个，每行之间可以有空行。但不能有中文。TXT文本格式</p>
     </div>
   </body>
 </html>

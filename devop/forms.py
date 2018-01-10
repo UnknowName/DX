@@ -9,4 +9,4 @@ class AccountForm(forms.Form):
 
 
 class FileForm(forms.Form):
-    filename = forms.FileField()
+    filename = forms.FileField(label='上传')
