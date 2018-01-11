@@ -3,11 +3,6 @@
 
 
 import re
-import json
-import requests
-from tld import get_tld
-
-from django.conf import settings
 
 
 def create_fqdn(name):
