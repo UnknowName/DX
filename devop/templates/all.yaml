@@ -4,6 +4,6 @@
          "url": "{{ api.use_domain | lower }}",
          "iis": "{{ api.system_iis_server | lower }}",
          "nginx": "{{ api.system_ngx_server | lower }}"
-     },
+     }{% if not forloop.last %},{% endif %}
   {% endfor %}
 }
