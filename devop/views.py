@@ -2,14 +2,14 @@
 # coding:utf8
 
 
-from django.shortcuts import HttpResponse, render
-
 import re
 import json
 
 from devop.ldap_auth import LDAPAuth
 from devop.models import DXSystemInfo
 from devop.funcs import create_fqdn, fmt_host, get_site_app
+
+from django.shortcuts import HttpResponse, render
 
 
 def index(request):
@@ -91,7 +91,3 @@ def generate_yaml(request, sys_name, sys_type):
 def get_all(request):
     apis = DXSystemInfo.objects.filter(system_type='API')
     return render(request, 'all.yaml', locals())
-
-
-def clean_cache(request):
-    pass

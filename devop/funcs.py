@@ -33,7 +33,7 @@ def get_site_app(url):
 
 
 def fmt_host(host):
-    if isinstance(host,list):
+    if isinstance(host, list):
         return ':'.join(host)
     else:
         return host
