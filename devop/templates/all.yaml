@@ -1,9 +1,9 @@
 {
   {% for api in apis %}
-    '{{ api.system_server_name }}': {
-         'url': '{{ api.use_domain | lower }}',
-         'iis': '{{ api.system_iis_server | lower }}',
-         'nginx': '{{ api.system_ngx_server | lower }}'
+    "{{ api.system_server_name }}": {
+         "url": "{{ api.use_domain | lower }}",
+         "iis": "{{ api.system_iis_server | lower }}",
+         "nginx": "{{ api.system_ngx_server | lower }}"
      },
   {% endfor %}
 }
