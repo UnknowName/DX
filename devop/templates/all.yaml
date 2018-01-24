@@ -1,7 +1,9 @@
 {
   {% for api in apis %}
     "{{ api.system_server_name }}": {
-         "url": "{{ api.use_domain | lower }}",
+         {% if api.use_domain %}
+             "url": "{{ api.use_domain | lower }}",
+         {% endif %}
          "iis": "{{ api.system_iis_server | lower }}",
          "nginx": "{{ api.system_ngx_server | lower }}"
      }{% if not forloop.last %},{% endif %}
