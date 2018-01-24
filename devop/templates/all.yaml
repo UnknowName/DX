@@ -1,11 +1,11 @@
 {
   {% for api in apis %}
+    {% if api.use_domain %}
     "{{ api.system_server_name }}": {
-         {% if api.use_domain %}
-             "url": "{{ api.use_domain | lower }}",
-         {% endif %}
+         "url": "{{ api.use_domain | lower }}",
          "iis": "{{ api.system_iis_server | lower }}",
          "nginx": "{{ api.system_ngx_server | lower }}"
      }{% if not forloop.last %},{% endif %}
+    {% endif %}
   {% endfor %}
 }
