@@ -9,7 +9,8 @@ from devop.models import PortalInfo
 
 class DXSystemInfoAdmin(admin.ModelAdmin):
     search_fields = ('system_name', 'system_iis_server', 'system_ngx_server')
-    list_display = ('system_type', 'system_name', 'system_server_name', 
+    list_display = (
+        'system_type', 'system_name', 'system_server_name', 
         'system_iis_server', 'use_domain'
     )
 
